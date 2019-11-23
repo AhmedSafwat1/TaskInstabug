@@ -1,6 +1,7 @@
 class V1::ChatsController < ApplicationController
     before_action :get_application
     before_action :get_chat ,only: [:destroy,:show,:update]
+    before_action :get_chat_search ,only: [:search]
     #get all applications
     def index
         @chats = @application.chats
@@ -25,7 +26,24 @@ class V1::ChatsController < ApplicationController
             render json: @response 
         end   
     end
-    
+
+    #search
+    def search
+        puts "hi #{search_parms}  chat is #{@chat.id  }"
+
+        if !search_parms.has_key?(:search)
+            return render json:  {key: :error, msg: :search_required,errors: {msg: :search_required}}
+        end
+        @messages = Message.search_in_chat(search_parms[:search], @chat.id)
+     
+        messages = []
+        @messages.each do |msg|
+            messages.push({number:msg.number, message: msg.message})
+        end 
+        reponse = {number:@chat.number, messages:messages,message_count:  @messages.size} 
+        render json:  {key: :success, data: reponse} , status: :ok
+    end
+
     #destory
     def destroy
         @response = {key: :success, msg:"deleted"}
@@ -53,7 +71,12 @@ class V1::ChatsController < ApplicationController
       end
 
     private
-
+    
+    #PARMAS
+    def search_parms 
+       params.permit(:search)    
+    end 
+    
     def get_application
     
         @application  =  Application::find_by_key(params[:application_id])
@@ -69,5 +92,13 @@ class V1::ChatsController < ApplicationController
             return render json:  {key: :error, msg:"not found chat in application",errors: {msg:"not found chat"} , code:404}
          end
     end
+
+    def get_chat_search
+        @chat  = @application.chats.find_by_number(params[:chat_id])
+        if(!@chat)
+            return render json:  {key: :error, msg:"not found chat in application",errors: {msg:"not found chat"} , code:404}
+         end
+    end
+
 
 end

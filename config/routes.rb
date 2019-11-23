@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :v1 do
     resources :applications do
       resources :chats ,only: [:show, :create, :index, :destroy] do
+        get :search
         resources :messages ,only: [:create] 
       end
     end

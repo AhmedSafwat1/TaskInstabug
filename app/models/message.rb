@@ -4,6 +4,14 @@ class Message < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  # schema for elastic search
+  settings do
+    mappings dynamic: false do
+      indexes :message, type: :text
+      indexes :chat_id, type: :bigint 
+    end
+  end
+
   #validation 
   validates :message, presence: true 
   validates :number, uniqueness: { scope: :chat_id }
@@ -17,7 +25,7 @@ class Message < ApplicationRecord
 
 
   #custom srearch
-  def self.search_published(query, chat_id)
+  def self.search_in_chat(query, chat_id)
     self.search({
       query: {
         bool: {

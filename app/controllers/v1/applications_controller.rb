@@ -57,7 +57,7 @@ class V1::ApplicationsController < ApplicationController
     private
 
     def application_parms
-        params.require(:application).permit("name")
+        params.permit(:name)
     end 
 
     def get_application

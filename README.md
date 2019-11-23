@@ -23,3 +23,11 @@ Things you may want to cover:
 
 * ...
 # TaskInstabug
+
+# First 
+* must have docker if not have install it from https://www.docker.com/
+* run the next line to install the  elasticsearch in you machine
+* docker run --rm -d -e "discovery.type=single-node" \
+    -e "bootstrap.memory_lock=true" \
+    -p 9200:9200 \
+    elasticsearch:6.8.1
