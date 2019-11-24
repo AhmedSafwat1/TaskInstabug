@@ -33,7 +33,9 @@ Things you may want to cover:
     elasticsearch:6.8.1
 
 # bundle install to install gem 
+* should cahnge confi for database.yml in config folder to connect with database in your pc
 * run rake db:create
+* run rails db:migrate
 
 # second 
 * can import the link in postman an testing the api cal 
