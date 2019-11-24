@@ -44,6 +44,7 @@ Things you may want to cover:
    * post http://localhost:3000/v1/applications   to crate new application => return key whic will use need name as parmater
    * get  http://localhost:3000/v1/applications   to get all applications in sysem and number of chat in each one
    * get  http://localhost:3000/v1/applications/{key} to get the application which have the key  and number of chat
+   * put  http://localhost:3000/v1/applications/{key} to update  application name which have the key  need name as parmater
    * delete  http://localhost:3000/v1/applications/{key} to delate application and chats in and message
    * post http://localhost:3000/v1/applications/{key}/chats to create new chat and return number for it
    * get  http://localhost:3000/v1/applications/{key}/chats/{number} to get the the chat which have number return messages in
