@@ -23,7 +23,7 @@ Things you may want to cover:
 
 * ...
 # TaskInstabug
-* ...    
+* ...
 # First 
 * must have docker if not have install it from https://www.docker.com/
 * run the next line to install the  elasticsearch in you machine
@@ -31,3 +31,10 @@ Things you may want to cover:
     -e "bootstrap.memory_lock=true" \
     -p 9200:9200 \
     elasticsearch:6.8.1
+
+# bundle install to install gem
+
+# second 
+* can import the link in postman an testing the api cal 
+
+* https://www.getpostman.com/collections/fb82fe5ca8fd26808743
